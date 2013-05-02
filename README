@@ -1,0 +1,277 @@
+CSS ENGINE API | beta v.1
+###########################################################################
+---------------------------------------------------------------------------
+About CSS Engine
+---------------------------------------------------------------------------
+CSS Engine allows developers to work with CSS objects. It reads CSS 
+structure independent of specific value types declared under any of the 
+CSS specifications.  
+
+Developers can use this API to read, process, manage, and write CSS 
+objects. Objects can be truncated though selectors and style values of 
+duplicity.  Objects can be written to script formated strings and 
+generate a CSS file type.
+
+Commercial rights are reserved to this code and documentation to the author 
+Brandon L. Clark.  Any commercial use of this code and documention requires 
+legaly bound contract granting such rights as such declared by United States 
+of America contract laws and certified notary of both parties signitures.
+
+What could I build?
+	-CSS Minifier
+	-CSS Editor
+	-Browsers CSS Engine
+	-Logical structure for applying styles though CGI
+
+---------------------------------------------------------------------------
+
+      Share your project or idea with us, visit www.themindspot.com!
+
+
+
+
+Class Object API
+############################################################################
+---------------------------------------------------------------------------
+CSStag Class 
+---------------------------------------------------------------------------
+	Description:
+	Defined by the the tag value and weighted by its group, type, and 
+	connection type.  
+
+	Tag Value :	Tag field name value.
+	Tag Type  :	Tag type.  Used for specification.
+	Group	  :	The order in a tag line.  Used for specification.
+	Connected :	Shared tag type when a tag is connected though 
+			another tag type.
+
+	Tag Type Values
+	0:  none tag value ( Equal to HTML tag type )
+	1: class
+	2: id
+	3: pseudo
+	4: attribute-open
+	5: attribute-close
+	6: media
+	7: comparison operator
+
+	Group Values
+	0: none
+	1 or more defines specificity of tag.
+
+	Initializers
+	-CSStag ( )
+	-CSStag ( int, string ) 
+	-CSStag ( int, int, string ) 
+	-CSStag ( int, int, int, string ) 
+
+	Setters
+	Name:		setTag
+	Description: 	Set tag fields.
+	-void setTag ( CSStag )
+	-void setTag ( int, string ) 
+	-void setTag ( int, int, string )
+	-void setTag ( int, int, int, string ) 
+
+	Name:		setTagName
+	Description: 	Set value field.
+	-void setTagName ( string )
+
+	Name:		setTagType
+	Description: 	Set tag type field.
+	-void setTagType (int )
+
+	Name:		setTagGroup
+	Description: 	Set group specificity.
+	-void setTagGroup ( int ) 
+
+	Name:		setTagConnected
+	Description: 	Set connected value type to corrisonding tag value.
+	-void setTagConnected ( int )
+
+	Name:		setTagExtend
+	Description: 	Set the value to extended or nested.
+	-void setTagExtend ( int )
+
+	Name:		clearTag
+	Description: 	Clear the tag of previously set fields.	
+	-void clearTag ( void ) 
+
+	Getters
+	Name:		getTag			
+	Description: 	Returns tag as CSStag.
+	-CSStag getTag ( void )
+
+	Name:		getTagName			
+	Description: 	Returns tag name as string.
+	-string getTagName ( void )		
+
+	Name:		getTagType			
+	Description: 	Returns tag type as integer.
+	-int getTagType ( void )
+
+	Name:		getTagGroup			
+	Description: 	Returns tag group as integer.
+	-int getTagGroup ( void )
+
+	Name:		getTagConnected		
+	Description: 	Returns tag connected type as integer.
+	-int getTagConnected ( void )
+
+	Name:		getTagExtend		
+	Description: 	Returns tags extended or nested state as integer.
+	-int getTagExtend ( void ) 
+
+
+---------------------------------------------------------------------------
+CSSselector Class
+---------------------------------------------------------------------------
+	Class Description
+	Container class to write and orginize tag types into a selector.
+
+	Inherits
+	-CSStag Class
+
+	Initializers
+	-CSSselector ( )
+	-CSSselector ( int, string )
+	-CSSselector ( int, int, string )
+	-CSSselector ( int, int, int, string )
+
+	Setters
+	Name:		setSelector
+	Description: 	Clears the container and inserts the specificity.
+	-void setSelector ( CSStag )
+	-void setSelector ( int, string )
+
+	Name:		setSelectorContainer		
+	Description: 	Clears the container and inserts another container . 
+	-void setSelectorContainer ( vector<CSStag> )
+
+	Name:		insertSelector		
+	Description: 	Insert tag to container that have been defined. 
+	-void insertSelector ( void )
+
+	Functions
+	Name:		nest	
+	Description: 	Set nest to previous tag.
+	-void nest ( CSStag )
+	-void nest ( string )
+	-void nest ( int, string )
+
+	Name:		extend
+	Description: 	Extend the specificity of previous tag.
+	-void extend ( CSStag )
+	-void extend ( string )		
+	-void extend ( int, string )
+
+	Name:		pseudo	
+	Description: 	Add a pseudo tag to previous tag
+	-void pseudo ( CSStag )	
+	-void pseudo ( string )	
+	-void pseudo ( int, string ) 
+		Special case of “::”; set 1. Default 0.
+
+	Name:		attribute	
+	Description: 	Add attribute tag to selector statement.
+	-void attribute ( CSSselector )
+		Takes a single namespace or combinator formula from selector.	
+	-void attribute ( string )
+		Take namespace as HTML type.
+	-void attribute ( string, char, string )
+		Creates a combinator attribute.
+
+	Name:		mediaTag		
+	Description: 	This clears the container of any other selectors before 
+			media tag is inserted.
+	-void mediaTag ( CSStag )
+	-void mediaTag ( string )
+
+	Name:		combinator	
+	Description: 	Insert a combinator value or formula.  
+	-void combinator ( CSSselector )
+	-void combinator ( char )
+	-void combinator ( string, char, string )
+
+	Getters
+	Name:		getSelector	
+	Description: 	Return CSStag from container index position.
+	-CSStag getTag ( int )
+
+	Name:		getSelectorContainer		
+	Description: 	Return 
+	-vector<CSStag> getTagContainer ( void )
+---------------------------------------------------------------------------
+CSSvalue Class
+---------------------------------------------------------------------------
+	Description
+	Defined by the value of specification the user is targeting and 
+	the corresponding settings for it. Each value contains a browser 
+	specification field for browser specific design.
+
+	Value : 	CSS specification assignment name.
+	Setting: 	Corresponding specification setting.
+	Browser: 	Target browser of CSS specification.
+
+	Browser Target Values
+	0: none
+	1: webkit
+	2: mozzila
+	3: opera
+	4: microsoft ( IE )
+
+	Initializers
+	-CSSvalue ( )
+	-CSSvalue ( string, string )
+	-CSSvalue ( int, string, string )	
+
+	Setters
+	Name:		setValue
+	Description: 	
+	-void setValue ( CSSvalue )
+	-void setValue ( string, string )
+	-void setValue ( int, string, string )
+
+	Name:		setValueName		
+	Description: 	
+	-void setValueName ( string )
+
+	Name:		setValueSetting	
+	Description: 	
+	-void setValueSetting ( string )
+
+	Name:		setValueBrowser
+	Description: 	
+	-void setValueBrowser ( int )
+
+	Functions
+	Name:		matchValue		
+	Description: 	
+	-bool matchValue ( string )
+	-bool matchValue ( int )
+
+	Getters
+	Name:		getValue		
+	Description: 	
+	-CSSvalue getValue ( void )
+
+	Name:		getValueString		
+	Description: 	
+	-string getValueString ( void )
+
+	Name:		getValueName
+	Description: 	
+	-string getValueName ( void )
+
+	Name:		getValueSetting		
+	Description: 	
+	-string getValueSetting ( void )
+
+	Name:		getBrowserTag
+	Description: 	
+	-string getBrowserTag ( void )
+
+	Name:		getBrowser
+	Description: 	
+	-int getBrowser ( void )
+
