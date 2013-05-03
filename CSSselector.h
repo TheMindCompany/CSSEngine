@@ -33,15 +33,15 @@ public:
 
 	void setSelectorContainer(std::vector<CSStag>);						// Set tag container.
 
+	virtual void selector(CSStag);										// Add extend tag.
+	virtual void selector(std::string);									// Add extend tag type & name.  Inner tagType = HTML
+	virtual void selector(int, std::string);							// Add selector tag type & name.
+																		// tagType = 4
+
 	virtual void nest(CSStag);											// Add nested tag.
 	virtual void nest(std::string);										// Add nested tag name.  tagType = HTML
 	virtual void nest(int, std::string);								// Add nested tag type & name.
 																		// tagType = 3
-
-	virtual void extend(CSStag);										// Add extend tag.
-	virtual void extend(std::string);									// Add extend tag type & name.  Inner tagType = HTML
-	virtual void extend(int, std::string);								// Add extend tag type & name.
-																		// tagType = 4
 
 	void pseudo(CSStag);												// Add pseudo tag.
 	void pseudo(std::string);											// Add pseudo tag type & name.
@@ -50,15 +50,15 @@ public:
 
 	void attribute(CSSselector);										// Add attribute to tag by tag.
 	void attribute(std::string);										// Add attribute to tag with name. tagType = HTML
-	void attribute(std::string, char, std::string);						// Add attribute to tag by name. tagType = HTML
+	void attribute(std::string, std::string, std::string);				// Add attribute to tag by name. tagType = HTML
 																		// tagType = 7
 
 	void media(CSStag);													// Add media by tag.
 	void media(std::string);											// Add media to tag with name. Inner tagType = HTML
 
 	void combinator(CSSselector);										// Add comparison tag.
-	void combinator(char);												// Add comparison tag from string.
-	void combinator(std::string, char, std::string);					// Add comparison tag from formula of tag types.
+	void combinator(std::string);												// Add comparison tag from string.
+	void combinator(std::string, std::string, std::string);				// Add comparison tag from formula of tag types.
 
 	CSStag getSelector(int);											// Get tag by index.
 	std::vector<CSStag> getSelectorContainer(void);						// Get tag container

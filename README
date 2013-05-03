@@ -13,9 +13,9 @@ duplicity.  Objects can be written to script formated strings and
 generate a CSS file type.
 
 Commercial rights are reserved to this code and documentation to the author 
-Brandon L. Clark.  Any commercial use of this code and documention requires 
-legaly bound contract granting such rights as such declared by United States 
-of America contract laws and certified notary of both parties signitures.
+Brandon L. Clark.  Any commercial use of this code and documentation requires 
+legally bound contract granting such rights as such declared by United States 
+of America contract laws and certified notary of both parties signiture's.
 
 What could I build?
 	-CSS Minifier
@@ -43,7 +43,7 @@ CSStag Class
 	Tag Type  :	Tag type.  Used for specification.
 	Group	  :	The order in a tag line.  Used for specification.
 	Connected :	Shared tag type when a tag is connected though 
-			another tag type.
+			    another tag type.
 
 	Tag Type Values
 	0:  none tag value ( Equal to HTML tag type )
@@ -73,53 +73,53 @@ CSStag Class
 	-void setTag ( int, int, string )
 	-void setTag ( int, int, int, string ) 
 
-	Name:		setTagName
-	Description: 	Set value field.
+	Name:		 setTagName
+	Description: Set value field.
 	-void setTagName ( string )
 
-	Name:		setTagType
-	Description: 	Set tag type field.
+	Name:		 setTagType
+	Description: Set tag type field.
 	-void setTagType (int )
 
-	Name:		setTagGroup
-	Description: 	Set group specificity.
+	Name:		 setTagGroup
+	Description: Set group specificity.
 	-void setTagGroup ( int ) 
 
-	Name:		setTagConnected
-	Description: 	Set connected value type to corrisonding tag value.
+	Name:		 setTagConnected
+	Description: Set connected value type to corisponding tag value.
 	-void setTagConnected ( int )
 
-	Name:		setTagExtend
-	Description: 	Set the value to extended or nested.
+	Name:		 setTagExtend
+	Description: Set the value to extended or nested.
 	-void setTagExtend ( int )
 
-	Name:		clearTag
-	Description: 	Clear the tag of previously set fields.	
+	Name:		 clearTag
+	Description: Clear the tag of previously set fields.	
 	-void clearTag ( void ) 
 
 	Getters
-	Name:		getTag			
-	Description: 	Returns tag as CSStag.
+	Name:		 getTag			
+	Description: Returns tag as CSStag.
 	-CSStag getTag ( void )
 
-	Name:		getTagName			
-	Description: 	Returns tag name as string.
+	Name:		 getTagName			
+	Description: Returns tag name as string.
 	-string getTagName ( void )		
 
-	Name:		getTagType			
-	Description: 	Returns tag type as integer.
+	Name:		 getTagType			
+	Description: Returns tag type as integer.
 	-int getTagType ( void )
 
-	Name:		getTagGroup			
-	Description: 	Returns tag group as integer.
+	Name:		 getTagGroup			
+	Description: Returns tag group as integer.
 	-int getTagGroup ( void )
 
-	Name:		getTagConnected		
-	Description: 	Returns tag connected type as integer.
+	Name:		 getTagConnected		
+	Description: Returns tag connected type as integer.
 	-int getTagConnected ( void )
 
-	Name:		getTagExtend		
-	Description: 	Returns tags extended or nested state as integer.
+	Name:		 getTagExtend		
+	Description: Returns tags extended or nested state as integer.
 	-int getTagExtend ( void ) 
 
 
@@ -212,6 +212,7 @@ CSSvalue Class
 	Value : 	CSS specification assignment name.
 	Setting: 	Corresponding specification setting.
 	Browser: 	Target browser of CSS specification.
+	Extended:   Does the value nest or extend a previous group.
 
 	Browser Target Values
 	0: none
@@ -219,6 +220,10 @@ CSSvalue Class
 	2: mozzila
 	3: opera
 	4: microsoft ( IE )
+	
+	Extend Value
+	0: Extend (Default)
+	1: Nest	
 
 	Initializers
 	-CSSvalue ( )
